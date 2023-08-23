@@ -7,7 +7,7 @@
  * @types: List of arguments
  * @flags: calculates active flags
  * @buffer: Buffer array to handle print
- * @witdth: width
+ * @width: width
  * @precision: precision specification
  * @size: size specifier
  * Return: Number of characters printed
@@ -16,7 +16,6 @@
 int print_char(va_list types, char buffer[],
 		int flags, int width, int precision, int size)
 {
-	char c = va_arg(types, int);
 	char c = va_arg(types, int);
 
 	return (handle_write_char(c, buffer, flags, width, precision, size));
@@ -54,7 +53,7 @@ int print_string(va_list types, char buffer[],
 
 	while (str[length] != '\0')
 		length++;
-
+	/*length accommadates precision*/
 	if (precision >= 0 && precision < length)
 		length = precision;
 
@@ -67,13 +66,13 @@ int print_string(va_list types, char buffer[],
 				write(1, " ", 1);
 			return (width);
 		}
-		else
+		/*else
 		{
 			for (i = width - length; i > 0; i--)
 				write(1, " ", 1);
 			write(1, &str[0], length);
 			return (width);
-		}
+		}*/
 	}
 
 	return (write(1, str, length));
