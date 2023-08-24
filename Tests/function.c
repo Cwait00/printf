@@ -1,4 +1,4 @@
-/*#include*//* "main.h"*/
+#include "main.h"
 
 /*************** PRINT CHAR ****************/
 
@@ -13,13 +13,13 @@
  * Return: Number of characters printed
  */
 
-/*int print_char(va_list types, char buffer[],
+int print_char(va_list types, char buffer[],
 		int flags, int width, int precision, int size)
 {
 	char c = va_arg(types, int);
 
 	return (handle_write_char(c, buffer, flags, width, precision, size));
-}*/
+}
 /**************** PRINT A STRING ***************/
 
 /**
@@ -33,7 +33,7 @@
  * Return: Number of printed characters
  */
 
-/*int print_string(va_list types, char buffer[],
+int print_string(va_list types, char buffer[],
 		int flags, int width, int precision, int size)
 {
 	int length = 0, i;
@@ -52,9 +52,9 @@
 	}
 
 	while (str[length] != '\0')
-		length++;*/
+		length++;
 	/*length accommadates precision*/
-	/*if (precision >= 0 && precision < length)
+	if (precision >= 0 && precision < length)
 		length = precision;
 
 	if (width > length)
@@ -65,7 +65,7 @@
 			for (i = width - length; i > 0; i--)
 				write(1, " ", 1);
 			return (width);
-		}*/
+		}
 		/*else
 		{
 			for (i = width - length; i > 0; i--)
@@ -73,10 +73,10 @@
 			write(1, &str[0], length);
 			return (width);
 		}*/
-	/*}
+	}
 
 	return (write(1, str, length));
-}*/
+}
 /****************** PRINT INT ****************/
 /**
  * print_int - Print int
@@ -88,7 +88,7 @@
  * @size: Size
  * Return: Number of character printed
  */
-/*int print_int(va_list types, char buffer[],
+int print_int(va_list types, char buffer[],
 		int flags, int width, int precision, int size)
 {
 	int i = BUFF_SIZE - 2;
@@ -117,7 +117,7 @@
 	}
 
 	i++;
-}*/
+}
 /***************************** PRINT PERCENT SIGN ***************************/
 /**
  * print_percent - Prints a percent sign
@@ -129,7 +129,7 @@
  * @size: Size specifier
  * Return: Number of printed characters
  */
-/*int print_percent(va_list type, char buffer[],
+int print_percent(va_list type, char buffer[],
 		int flags, int width, int precision, int size)
 {
 	UNSIGNED(types);
@@ -140,15 +140,4 @@
 	UNSIGNED(size);
 
 	return (write(1, "&&", 1));
-	}*/
-#include <stdio.h>
-
-/**
- * push - Entry point
- *
- * Return: 0
- */
-int push()
-{
-	return (0);
 }

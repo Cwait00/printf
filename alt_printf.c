@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdio.h>
 #include <unistd.h>
+#include <string.h>
 #include <stdarg.h>
 #define BUFFSIZE 1024
 /**
@@ -13,23 +14,18 @@ int _printf(const char *format, ...)
 	int char_like_c, in;
 	char *s;
 	int a = 0;
-	int b = 0;
+	char BUFFER[BUFFSIZE];
 
 	va_list list;
 
 	if (format == NULL)
 		return (-1);
-	if (format == "% ")
+	if (strcmp(format, "% ") == 0)
 		return (-1);
-	if (format == "%\0")
+	if (strcmp(format, "%\0") == 0)
 		return (-1);
-	if (format == "%@")
+	if (strcmp(format, "%@") == 0)
 		return (-1);
-
-	while (s[b] != '\0')
-	{
-		b++;/*tracks length of string*/
-	}
 
 	va_start(list, format);
 
@@ -45,16 +41,18 @@ int _printf(const char *format, ...)
 					write (1, &char_like_c, 1);
 					break;
 				case 'i':
-					in = atoi(va_arg(list, int));
-					write (1, &in, 1);
+					in = va_arg(list, int);
+					int_to_strchar(in, BUFFER);
+					write (1, BUFFER, man_length(BUFFER));
 					break;
 				case 'd':/*same as 'i'*/
 					in = va_arg(list, int);
-					write (1, &in, 1);
+					int_to_strchar(in, BUFFER);
+					write (1, BUFFER, man_length(BUFFER));
 					break;
 				case 's':
 					s = va_arg(list, char *);
-					write (1, s, b++);
+					write (1, s, man_length(s));
 					break;
 			}
 		}
@@ -66,3 +64,4 @@ int _printf(const char *format, ...)
 	}
 	va_end(list);
 	return (0);
+}
