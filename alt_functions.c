@@ -29,6 +29,11 @@ void int_to_strchar(int nr, char *string_remainder)
 	int remainder;
 	int a;
 
+	if (nr < 0)
+	{
+		nr = nr * -1;
+	}
+
 	for (a = 0; nr > 0; a++)/*can also use the while loop*/
 	{
 		string_remainder[a] = '0' + remainder;
