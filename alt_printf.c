@@ -34,6 +34,10 @@ int _printf(const char *format, ...)
 	       	if (format[a] == '%')
 		{
 			a++;
+			if (format[a] == '%')
+			{
+				write (1, &format[a], 1);
+			}
 			switch (format[a])
 			{
 				case 'c':
@@ -43,12 +47,12 @@ int _printf(const char *format, ...)
 				case 'i':
 					in = va_arg(list, int);
 					int_to_strchar(in, BUFFER);
-					write (1, BUFFER, man_length(BUFFER));
+					write (1, &BUFFER, man_length(BUFFER));
 					break;
-				case 'd':/*same as 'i'*/
+				case 'd':
 					in = va_arg(list, int);
 					int_to_strchar(in, BUFFER);
-					write (1, BUFFER, man_length(BUFFER));
+					write (1, &BUFFER, man_length(BUFFER));
 					break;
 				case 's':
 					s = va_arg(list, char *);
