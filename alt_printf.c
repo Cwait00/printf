@@ -14,7 +14,6 @@ int _printf(const char *format, ...)
 	int char_like_c, in;
 	char *s;
 	int a = 0;
-	char BUFFER[BUFFSIZE];
 
 	va_list list;
 
@@ -24,39 +23,37 @@ int _printf(const char *format, ...)
 		return (-1);
 	if (strcmp(format, "%\0") == 0)
 		return (-1);
-	if (strcmp(format, "%@") == 0)
+	if (strcmp(format, "%@") == 0)/*not neccerary*/
 		return (-1);
 
 	va_start(list, format);
 
-	while (format[a])
+	while (format[a] != '\0')
 	{
 	       	if (format[a] == '%')
 		{
 			a++;
 			if (format[a] == '%')
-			{
-				write (1, &format[a], 1);
+			{/*write to std output*/
+				write(1, &format[a], 1);
 			}
 			switch (format[a])
 			{
 				case 'c':
 					char_like_c = va_arg(list, int);/*argument retrieved*/
-					write (1, &char_like_c, 1);
+					write(1, &char_like_c, 1);
 					break;
 				case 'i':
 					in = va_arg(list, int);
-					int_to_strchar(in, BUFFER);
-					write (1, &BUFFER, man_length(BUFFER));
+					write(1, &in, 10);/*use size of*/
 					break;
 				case 'd':
 					in = va_arg(list, int);
-					int_to_strchar(in, BUFFER);
-					write (1, &BUFFER, man_length(BUFFER));
+					write(1, &in, 10);
 					break;
 				case 's':
 					s = va_arg(list, char *);
-					write (1, s, man_length(s));
+					write(1, s, man_length(s));
 					break;
 			}
 		}
