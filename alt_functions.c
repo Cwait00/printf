@@ -17,7 +17,7 @@ int man_length(char *s)
 }
 
 /**
- * Int_to_strchar - prints strings that were integers, one character
+ * int_to_strchar - prints strings that were integers, one character
  * a time.
  * @nr: number/ integer to change to char
  * to create a string

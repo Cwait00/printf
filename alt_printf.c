@@ -23,14 +23,12 @@ int _printf(const char *format, ...)
 		return (-1);
 	if (strcmp(format, "%\0") == 0)
 		return (-1);
-	if (strcmp(format, "%@") == 0)/*not neccerary*/
-		return (-1);
 
 	va_start(list, format);
 
 	while (format[a] != '\0')
 	{
-	       	if (format[a] == '%')
+		if (format[a] == '%')
 		{
 			a++;
 			if (format[a] == '%')
@@ -44,12 +42,9 @@ int _printf(const char *format, ...)
 					write(1, &char_like_c, 1);
 					break;
 				case 'i':
-					in = va_arg(list, int);
-					write(1, &in, 10);/*use size of*/
-					break;
 				case 'd':
 					in = va_arg(list, int);
-					write(1, &in, 10);
+					write(1, &in, 10);/*use size of*/
 					break;
 				case 's':
 					s = va_arg(list, char *);
