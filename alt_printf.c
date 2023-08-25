@@ -14,18 +14,13 @@ int _printf(const char *format, ...)
 	int char_like_c, in;
 	char *s;
 	int a = 0;
-
 	va_list list;
 
 	if (format == NULL)
 		return (-1);
-	if (strcmp(format, "% ") == 0)
+	if (strcmp(format, "% ") == 0 || strcmp(format, "%\0") == 0)
 		return (-1);
-	if (strcmp(format, "%\0") == 0)
-		return (-1);
-
 	va_start(list, format);
-
 	while (format[a] != '\0')
 	{
 		if (format[a] == '%')
