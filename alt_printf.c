@@ -39,7 +39,7 @@ int _printf(const char *format, ...)
 				case 'i':
 				case 'd':
 					in = va_arg(list, int);
-					write(1, &in, 10);/*use size of*/
+					write(1, &in, sizeof(int));/*use size of*/
 					break;
 				case 's':
 					s = va_arg(list, char *);
@@ -55,4 +55,4 @@ int _printf(const char *format, ...)
 	}
 	va_end(list);
 	return (0);
-}
+
